@@ -1,8 +1,5 @@
 language: python
 dist: xenial
-arch:
-  - amd64
-  - ppc64le
 cache:
   apt: true
   ccache: true
