@@ -12,11 +12,11 @@ arch:
 env:
   global:
     - pip_install_common='pip>=9.0 setuptools>=43.0 wheel>=0.30'
-      #python:
-      #  - 2.7
-      # - 3.5
-      # - 3.6
-      # - 3.7
+python:
+  - 2.7
+  - 3.5
+  - 3.6
+  - 3.7
 install: pip install $pip_install_common 'codecov>=2.0.15' -r requirements-test.txt
 script: script/test -sv && codecov
 
@@ -27,35 +27,28 @@ jobs:
   fast_finish: true
   include:
     - stage: test
-      python: 2.7
-      dist: trusty
-    - stage: test
-      python: 3.5
-      dist: trusty
-    - stage: test
-      python: 3.6
-      dist: trusty
-    - stage: test
-      python: 3.7
-      dist: trusty
-    - stage: test
       python: pypy
       dist: trusty
+      arch: ppc64le
       install: pip install $pip_install_common 'codecov>=2.0.15' -r requirements-test.txt
       script: script/test -sv && codecov
+      arch: 
     - stage: test
       env: _=py2-pep8
       python: 2.7
+      arch: ppc64le
       install: pip install -r requirements-test.txt
       script: test_group=pep8 script/test
     - stage: test
       env: _=py3-pep8
       python: 3.7
+      arch: ppc64le
       install: pip install -r requirements-test.txt
       script: test_group=pep8 script/test
     - stage: test
       env: _-py37-openssl11
       python: 3.7 # we'll use compiled version but makes Travis look correct
+      arch: ppc64le
       install:
         - deactivate && rm -rf $HOME/virtualenv
         - source script/compile-py3-openssl11.sh # source to alter PATH
@@ -67,15 +60,18 @@ jobs:
       python: 2.7
       install: pip install $pip_install_common
       script: test_group=package script/test
+      arch: ppc64le
     - stage: test
       env: _=py3-package
       python: 3.7
+      arch: ppc64le
       install: pip install $pip_install_common
       script: test_group=package script/test
     - stage: release
       if: (branch = master)
       env: _=pypi-upload-test
       python: 3.7
+      arch: ppc64le
       install: pip install $pip_install_common
       script: script/release -auto
       deploy:
@@ -92,6 +88,7 @@ jobs:
       if: (tag IS present)
       env: _=pypi-upload-public
       python: 3.7
+      arch: ppc64le
       install: pip install $pip_install_common
       script: script/release -auto
       deploy:
