@@ -12,11 +12,11 @@ arch:
 env:
   global:
     - pip_install_common='pip>=9.0 setuptools>=43.0 wheel>=0.30'
-python:
-  - 2.7
-  - 3.5
-  - 3.6
-  - 3.7
+      #python:
+      #  - 2.7
+      # - 3.5
+      # - 3.6
+      # - 3.7
 install: pip install $pip_install_common 'codecov>=2.0.15' -r requirements-test.txt
 script: script/test -sv && codecov
 
@@ -26,6 +26,18 @@ stages:
 jobs:
   fast_finish: true
   include:
+    - stage: test
+      python: 2.7
+      dist: trusty
+    - stage: test
+      python: 3.5
+      dist: trusty
+    - stage: test
+      python: 3.6
+      dist: trusty
+    - stage: test
+      python: 3.7
+      dist: trusty
     - stage: test
       python: pypy
       dist: trusty
