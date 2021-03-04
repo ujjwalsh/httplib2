@@ -27,6 +27,18 @@ jobs:
   fast_finish: true
   include:
     - stage: test
+      python: 2.7
+      arch: amd64
+    - stage: test
+      python: 3.5
+      arch: amd64
+    - stage: test
+      python: 3.6
+      arch: amd64
+    - stage: test
+      python: 3.7
+      arch: amd64
+    - stage: test
       env: _=py3-pep8
       python: 3.7
       arch: amd64
@@ -84,6 +96,18 @@ jobs:
         password:
           secure: "jZAyMFnmbhYChjsb3gRYfESWlio6pgmWEWBRxtBQXYZf+tzyKVISyHuyWkJvOVTP+lOpp2MTPZ2s1UgxGwfzZ/VE034Cz5iA/C6wafmgtSW+wK+KEJFPseHBBA7Gh4ReiAPi2a+i1UXdsJpFNhv36E9tbTq2sEinbisE2lSEQ0KHadjkc+6pvCjlyhmes7QyM5GviWYlWRNj2OIkT8SUuUcWQt7ZEl6kN82MoMHCaf1YxE/i4JUP3VLomWK3RLZJP356Y4IDkzlVhFU4MJ4ubNtoQ/ECM0uQ+nsHzO0k1uGWdF6mMTna7U5gLqUi9rfCK3bLMeVSo+TUCpjI7HkWDaBgVXGTe5dUMJCDfRgqeYa0GnriI74XYJu8NGjMLv30uO58t9E7VQGo2NrFRJDzKAIHANejWnpUPY3XgoN1rlrh52seMjaU2+jO40EC8HvIqeRRwPwhkqCSV2y+IZT2bOFp2nbMWhkUMsxIX7OXt+sy8GvK/ilMleEl7r0tnudsT7lGdnMwXlttI3CIAFGE7E+0zwnxNiMzQDzo+ILVR7ezrCK9M9xVYKGa3i8gkpSn0Fblnltgg7HaEI8YC3rMZe4iu1t0D6cZZUAAp2ZUo3NCJcZ35iUFBhlFvjVDbe2upJgU6GFgtDLjyzCJiKbz8qLRgMFYgT0CGr512e1jBo0="
         distributions: "sdist bdist_wheel"
+    - stage: test
+      python: 2.7
+      arch: ppc64le
+    - stage: test
+      python: 3.5
+      arch: ppc64le
+    - stage: test
+      python: 3.6
+      arch: ppc64le
+    - stage: test
+      python: 3.7
+      arch: ppc64le
     - stage: test
       python: pypy
       dist: trusty
